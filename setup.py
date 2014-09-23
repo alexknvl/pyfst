@@ -45,6 +45,7 @@ if sys.platform == 'darwin' and os.path.isdir('/opt/local/lib'):
 
 ext_modules = [
     Extension(name='fst._fst',
+              extra_compile_args=['-std=c++11'],
               sources=['fst/_fst.pyx'],
               language='c++',
               include_dirs=INC,

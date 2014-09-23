@@ -10,20 +10,36 @@ python:
 compiler:
     - gcc
 
+# settings according http://blog.travis-ci.com/2012-12-18-travis-artifacts/#How-to-use%3F
+# LZ owns the access keys
+env:
+ global:
+   - "ARTIFACTS_AWS_REGION=us-east-1"
+   - "ARTIFACTS_S3_BUCKET=ufal-dsg"
+   - secure: "GbwEE98Yt7Mc4CA3zeN9iv1xFE3Npm4NkS4Gr4iDKve6NupD02OPiWvEjK9uZWvcz7JAe45TZhCu5V3s8SiWvCatKPnsCYjGuWhBGlHoJKNrFwn2FUxJfqlbLgzfKiD/g+Y3cHUvmoPMS5oR6qEx8O+gIALpteuGTzKpyVK5NR8="
+   - secure: "hy63a5jROex+g36ZJmA9PgwCv59EzsoCmZePSRX0cGuP6jrafQqLIIiof15hgrpXyseiqLPqvL1UJGL+o2uOfydUgbVUW93qwIXmuyL21dFPg5hOSY9cVcfSs9iWrRVq1q9Dx1kEvA6NwXNbW/G0EI7qsSSVQwN92eHsOjnHri4="
+
 before_install:
-    # alternative download: || wget -T 10 -t 3 --no-check-certificate http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.3.2.tar.gz \
-    - wget http://openfst.cs.nyu.edu/twiki/pub/FST/FstDownload/openfst-1.3.2.tar.gz
-      && tar xozf openfst-1.3.2.tar.gz
-      && ln -s openfst-1.3.2 openfst
-      && pushd openfst
-      && ./configure --prefix=`pwd` --enable-static --with-pic --enable-shared --enable-far --enable-ngram-fsts
-      && make install
-      && [ -d lib64 ] && [ ! -d lib ] && ln -s lib64 lib
-      ; popd
+    # Buildin openfst - You should build openfst yourself for you system - something like lines below!
+    # - wget http://openfst.cs.nyu.edu/twiki/pub/FST/FstDownload/openfst-1.3.4.tar.gz
+    #   && tar xozf openfst-1.3.4.tar.gz
+    #   && ln -s openfst-1.3.4 openfst
+    #   && pushd openfst
+    #   && ./configure --prefix=`pwd` --enable-static --with-pic --enable-shared --enable-far --enable-ngram-fsts
+    #   && make install
+    #   && [ -d lib64 ] && [ ! -d lib ] && ln -s lib64 lib
+    #   ; popd
+    # USING PREBUILD OPENFST - DO NOT USE IT FOR YOUR SYSTEM!
+    - wget https://s3-eu-west-1.amazonaws.com/ufal-dsg/openfst/travis-openfst.tar.gz -O travis-openfst.tar.gz && tar zxvf travis-openfst.tar.gz && ln -s travis-openfst openfst
 
 install: 
-    - pip install -q cython pystache pyyaml --use-mirrors
+    - pip install -q cython pystache pyyaml
     - export FST=`pwd`/openfst; LIBRARY_PATH=$FST/lib:$FST/lib/fst CPLUS_INCLUDE_PATH=$FST/include python setup.py build_ext --inplace
 
 script:
     - export FST=`pwd`/openfst; export LD_LIBRARY_PATH=$FST/lib:$FST/lib/fst:$LD_LIBRARY_PATH; LIBRARY_PATH=$FST/lib:$FST/lib/fst CPLUS_INCLUDE_PATH=$FST/include python setup.py nosetests
+
+# after_success: # and this only on success
+#     - export FST=`pwd`/openfst; export LD_LIBRARY_PATH=$FST/lib:$FST/lib/fst:$LD_LIBRARY_PATH; LIBRARY_PATH=$FST/lib:$FST/lib/fst CPLUS_INCLUDE_PATH=$FST/include python setup.py bdist_egg && tar cvzf pyfst_dist_egg.tar.gz dist
+#     - travis-artifacts upload --path pyfst_dist_egg.tar.gz --target-path pyfst/pyfst_dist_egg.tar.gz
+#     - travis-artifacts upload --path pyfst_dist_egg.tar.gz --target-path pyfst/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID
