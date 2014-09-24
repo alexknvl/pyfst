@@ -8,7 +8,7 @@ Documentation: http://pyfst.github.io
 
 ## Installation
 
-1. Install OpenFst 1.3
+1. Install OpenFst 1.3.2
 2. Install requirements ``sudo pip install --upgrade pyyaml pystache cython``
 3. Build the fork using `setup.py`
 
