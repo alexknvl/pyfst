@@ -60,13 +60,13 @@ def read_symbols(filename):
     del fstream
     return table
 
-def read_symbols_text(filename, allow_negative=False):
-    """read_symbols(filename, allow_negative=False)
-    Read SymbolTable from the textual representation"""
-    filename = as_str(filename)
-    cdef SymbolTable table = SymbolTable.__new__(SymbolTable)
-    table.table = sym.SymbolTableReadText(filename, allow_negative)
-    return table
+# def read_symbols_text(filename, allow_negative=False):
+#     """read_symbols(filename, allow_negative=False)
+#     Read SymbolTable from the textual representation"""
+#     filename = as_str(filename)
+#     cdef SymbolTable table = SymbolTable.__new__(SymbolTable)
+#     table.table = sym.SymbolTableReadText(filename, allow_negative)
+#     return table
 
 cdef class SymbolTable:
     # cdef sym.SymbolTable* table
