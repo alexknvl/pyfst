@@ -1,8 +1,7 @@
 from fst._fst import EPSILON, EPSILON_ID, SymbolTable,\
         read, read_log, read_std, read_symbols, \
         LogWeight, LogArc, LogState, LogVectorFst,\
-        TropicalWeight, StdArc, StdState, StdVectorFst
-        #, read_symbols_text
+        TropicalWeight, StdArc, StdState, StdVectorFst, read_symbols_text
 
 
 def _make_transducer_class(clsname, parent):
