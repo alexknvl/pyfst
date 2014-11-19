@@ -36,7 +36,7 @@ class pre_build_ext(build_ext):
 
 
 INC, LIB = [], []
-extra_compile_args=['-std=c++11'],
+extra_compile_args = ['-std=c++11']
 
 if sys.platform == 'darwin':
     extra_compile_args.append('-stdlib=libstdc++')
