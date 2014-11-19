@@ -64,12 +64,13 @@ def read_symbols_text(filename, allow_negative=False):
     """read_symbols(filename, allow_negative=False)
     Read SymbolTable from the textual representation"""
     filename = as_str(filename)
+    cdef ifstream* fstream = new ifstream(filename)
     cdef SymbolTable table = SymbolTable.__new__(SymbolTable)
-    table.table = sym.SymbolTableReadText(filename, allow_negative)
+    table.table = sym.SymbolTableReadText(fstream[0], filename)
+    del fstream
     return table
 
 cdef class SymbolTable:
-    # cdef sym.SymbolTable* table
 
     def __init__(self, epsilon=EPSILON):
         """SymbolTable() -> new symbol table with \u03b5 <-> 0

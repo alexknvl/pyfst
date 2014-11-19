@@ -29,4 +29,4 @@ cdef extern from "<fst/symbol-table.h>" namespace "fst":
             string& source)
 
     cdef SymbolTable* SymbolTableReadText "fst::SymbolTable::ReadText" (
-            string& source, bool allow_negative)
+            istream &strm, string& source)
