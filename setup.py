@@ -37,9 +37,11 @@ class pre_build_ext(build_ext):
 
 INC, LIB = [], []
 extra_compile_args = ['-std=c++11']
+extra_link_args = []
 
 if sys.platform == 'darwin':
     extra_compile_args.append('-stdlib=libstdc++')
+    extra_link_args.append('-stdlib=libstdc++')
     # MacPorts
     if os.path.isdir('/opt/local/lib'):
         INC.append('/opt/local/include')
@@ -49,6 +51,7 @@ if sys.platform == 'darwin':
 ext_modules = [
     Extension(name='fst._fst',
               extra_compile_args=extra_compile_args,
+              extra_link_args=extra_link_args,
               sources=['fst/_fst.pyx'],
               language='c++',
               include_dirs=INC,
