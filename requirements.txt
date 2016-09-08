@@ -1,0 +1,3 @@
+cython==0.21
+pystache==0.5
+pyyaml==3.11

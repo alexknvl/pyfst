@@ -4,3 +4,4 @@ fst/_fst.cpp
 examples/binary.fst
 fst/_fst.so
 build
+.idea
