@@ -8,7 +8,7 @@ Documentation: http://pyfst.github.io
 
 ## Installation
 
-1. Install OpenFst 1.3.4
+1. Install OpenFst 1.3.4 pached with [c++11 patch from Kaldi](http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.3.4.tar.gz)
 2. Install requirements ``sudo pip install --upgrade pyyaml pystache cython``
 3. Build the fork using `setup.py`
 
@@ -44,10 +44,39 @@ t.shortest_path() # 2 -(a:A/0.5)-> 1 -(c:C/2.5)-> 0/3.5
 
 The pyfst API is [IPython notebook](http://ipython.org/ipython-doc/dev/interactive/htmlnotebook.html)-friendly: the transducers objects are [automatically drawn](http://nbviewer.ipython.org/3835477/) using [Graphviz](http://www.graphviz.org).
 
+## Docker
+
+There is also a Dockerfile so that you can build pyfst and run it within
+a Docker image.
+
+Build:
+
+```bash
+docker build -t pyfst .
+```
+
+Run:
+
+```bash
+docker run -p 8888:8888 -it pyfst jupyter notebook --ip=0.0.0.0 /pyfst/notebooks
+```
+
+Jupyter notebooks will be available at http://localhost:8888/tree on your host machine. 
+
+Python examples are in `/pyfst/examples`. You can run them as follows:
+```bash
+docker run -it pyfst python /pyfst/examples/basic.py
+```
+
+
+
 ## License
 
-Copyright 2013 Victor Chahuneau
-          2013 Ondrej Platek
+Copyright:
+
+- 2013 Victor Chahuneau
+- 2013 Ondrej Platek
+- 2016 Filip Jurcicek
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
