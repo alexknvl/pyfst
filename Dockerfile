@@ -33,3 +33,5 @@ ENV CPLUS_INCLUDE_PATH=$FST/include
 RUN python setup.py install
 
 WORKDIR /
+
+VOLUME /pyfst/notebooks

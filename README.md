@@ -58,7 +58,7 @@ docker build -t pyfst .
 Run:
 
 ```bash
-docker run -p 8888:8888 -it pyfst jupyter notebook --ip=0.0.0.0 /pyfst/notebooks
+docker run -p 8888:8888 -v `pwd`/notebooks:/notebooks -it pyfst sh -c "jupyter notebook --ip=0.0.0.0 /notebooks"
 ```
 
 Jupyter notebooks will be available at http://localhost:8888/tree on your host machine. 
