@@ -186,10 +186,12 @@ cdef class _Fst:
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except OSError:
             raise Exception('cannot find the dot binary')
+
         out, err = process.communicate(self.draw())
         if err:
             raise Exception(err)
-        return out
+
+        return out.decode('utf8')
 
 {{#types}}
 
