@@ -8,7 +8,7 @@ Documentation: http://pyfst.github.io
 
 ## Installation
 
-1. Install OpenFst 1.3.4 pached with [c++11 patch from Kaldi](http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.3.4.tar.gz)
+1. Install OpenFst 1.6.2.
 2. Install requirements ``sudo pip install --upgrade pyyaml pystache cython``
 3. Build the fork using `setup.py`
 
@@ -77,6 +77,7 @@ Copyright:
 - 2013 Victor Chahuneau
 - 2013 Ondrej Platek
 - 2016 Filip Jurcicek
+- 2017 Alexander Konovalov
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -92,7 +92,7 @@ Example usage::
 setup(
     name='pyfst',
     cmdclass={'build_ext': pre_build_ext},
-    version='0.2.3dev',
+    version='0.3.0',
     url='http://pyfst.github.io',
     author='Victor Chahuneau, Ondrej Platek',
     description='A Python interface to OpenFst.',
