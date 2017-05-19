@@ -1,12 +1,17 @@
 fst/_fst.pyx
 fst/libfst.pxd
-fst/_fst.cpp
 examples/binary.fst
 fst/_fst.so
 build
-.idea
-notebooks/.ipynb_checkpoints
 *.c
 *.cpp
 pyfst.egg-info
 dist/
+
+# IDEs
+.pydevproject
+.project
+.idea
+
+# IPython
+.ipynb_checkpoints
