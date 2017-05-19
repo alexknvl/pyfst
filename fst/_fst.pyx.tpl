@@ -824,15 +824,35 @@ cdef class {{fst}}(_Fst):
                                              else NULL)
         cdef sym.SymbolTable* ssyms_table = (ssyms.table if ssyms else NULL)
         cdef libfst.FstDrawer[libfst.{{arc}}]* drawer
-        drawer = new libfst.FstDrawer[libfst.{{arc}}](self.fst[0],
-                isyms_table, osyms_table, ssyms_table,
-                False, string(), 8.5, 11, True, False, 0.40, 0.25, 14, 5, False)
+
+        drawer = new libfst.FstDrawer[libfst.{{arc}}](
+            self.fst[0], # const Fst<Arc> &fst,
+            isyms_table, # const SymbolTable *isyms,
+            osyms_table, # const SymbolTable *osyms,
+            ssyms_table, # const SymbolTable *ssyms,
+            False,       # bool accep,
+            string(),    # const string &title,
+            8.5,         # float width,
+            11,          # float height,
+            True,        # bool portrait,
+            False,       # bool vertical,
+            0.40,        # float ranksep,
+            0.25,        # float nodesep,
+            14,          # int fontsize,
+            5,           # int precision,
+            string(),    # const string &float_format,
+            False        # bool show_weight_one
+        )
         drawer.Draw(&out, 'fst')
-        cdef bytes out_str = out.str()
+
+        out_str = out.str().decode("utf-8")
+
         del drawer
         if self.acceptor:
             # Replace double labels (a:a) with simple labels (a)
-            out_str = re.sub(r'label = "(.+):\1(["\/])', r'label = "\1\2', out_str)
-        return out_str
+            out_str = re.sub(ur'label = "(.+):\1(["\/])',
+                             ur'label = "\1\2',
+                             out_str)
+        return out_str.encode("utf-8")
 
 {{/types}}
