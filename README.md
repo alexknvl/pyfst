@@ -4,7 +4,7 @@ Python interface to [OpenFst](http://openfst.org)
 
 Documentation: http://pyfst.github.io
 
-[![Build Status](https://travis-ci.org/UFAL-DSG/pyfst.png?branch=master)](https://travis-ci.org/UFAL-DSG/pyfst)
+This fork is intended to follow the latest OpenFST and Python version (currently following 1.6.2 and 3.4). No compatibility with Python 2 is planned.
 
 ## Installation
 
