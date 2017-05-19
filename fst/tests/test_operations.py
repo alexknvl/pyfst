@@ -1,6 +1,7 @@
 import fst
 from nose.tools import eq_
 
+
 def test_shortest_distance():
     t = fst.Acceptor()
     t.add_arc(0, 1, 'a', 3)
@@ -12,6 +13,7 @@ def test_shortest_distance():
 
     eq_([float(v) for v in t.shortest_distance()], [0, 3, 5, 7])
     eq_([float(v) for v in t.shortest_distance(True)], [10, 7, 7, 3])
+
 
 def test_replace():
     syms = fst.SymbolTable()
@@ -38,7 +40,8 @@ def test_replace():
     a4.add_arc(0, 1, 'schalkwyk')
     a4[1].final = True
 
-    result = a1.replace({'$name': a2, '$firstname': a3, '$lastname': a4}, epsilon=True)
+    result = a1.replace({'$name': a2, '$firstname': a3, '$lastname': a4},
+                        epsilon=True)
     result.remove_epsilon()
 
     expected = fst.Acceptor(syms)
@@ -60,9 +63,10 @@ def test_replace():
 
     eq_(result, expected)
 
-# TODO generate several paths and check number of paths generated
-# TODO check distributions?
+
 def test_randgen():
+    # TODO generate several paths and check number of paths generated
+    # TODO check distributions?
     t = fst.Acceptor()
     t.add_arc(0, 1, 'a', 0.5)
     t.add_arc(1, 2, 'b', 0.5)
@@ -77,6 +81,7 @@ def test_randgen():
     r = t.logprob_generate()
     # check that r \in t
     eq_(r & t.remove_weights(), r)
+
 
 def test_closure():
     t = fst.linear_chain('ab')

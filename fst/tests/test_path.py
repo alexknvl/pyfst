@@ -1,6 +1,7 @@
 import fst
 from nose.tools import eq_
 
+
 def test_paths():
     t = fst.Acceptor()
     t.add_arc(0, 1, 'a')
@@ -11,7 +12,8 @@ def test_paths():
     t[2].final = True
     t[4].final = True
 
-    words = set(''.join(t.isyms.find(arc.ilabel) for arc in path) for path in t.paths())
+    words = set(''.join(t.isyms.find(arc.ilabel) for arc in path)
+                for path in t.paths())
     eq_(words, set(('ab', 'c', 'abde', 'cde')))
 
 if __name__ == '__main__':

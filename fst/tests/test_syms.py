@@ -1,15 +1,16 @@
 import fst
 from nose.tools import eq_, ok_, assert_raises
 
+
 def test_syms():
     syms = fst.SymbolTable()
-    eq_(len(syms), 1) # __len__
-    ok_(fst.EPSILON in syms) # __contains__
-    eq_(syms[fst.EPSILON], fst.EPSILON_ID) # __getitem__
-    eq_(syms.find(fst.EPSILON_ID), fst.EPSILON) # find(int)
-    eq_(syms.find(fst.EPSILON), fst.EPSILON_ID) # find(str)
-    eq_(syms, syms.copy()) # __richcmp__
-    syms['a'] = 2 # __setitem__
+    eq_(len(syms), 1)                            # __len__
+    ok_(fst.EPSILON in syms)                     # __contains__
+    eq_(syms[fst.EPSILON], fst.EPSILON_ID)       # __getitem__
+    eq_(syms.find(fst.EPSILON_ID), fst.EPSILON)  # find(int)
+    eq_(syms.find(fst.EPSILON), fst.EPSILON_ID)  # find(str)
+    eq_(syms, syms.copy())                       # __richcmp__
+    syms['a'] = 2                                # __setitem__
     eq_(syms.find('a'), 2)
     eq_(syms.find(2), 'a')
     eq_(syms['a'], 2)
@@ -17,6 +18,7 @@ def test_syms():
     assert_raises(KeyError, syms.find, 1)
     ok_('x' not in syms)
     eq_(list(syms.items()), [(fst.EPSILON, fst.EPSILON_ID), ('a', 2)])
+
 
 def test_merge():
     # Good merge

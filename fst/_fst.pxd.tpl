@@ -3,7 +3,7 @@ cimport libfst
 
 
 cdef class _Fst:
-    pass 
+    pass
 
 cdef class SymbolTable:
     cdef sym.SymbolTable* table

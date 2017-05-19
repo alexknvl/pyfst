@@ -1,6 +1,7 @@
 import fst
 from nose.tools import eq_, ok_
 
+
 def test_simple():
     t = fst.Transducer()
     for i, (ic, oc) in enumerate(list(zip('hello', 'olleh'))):

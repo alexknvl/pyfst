@@ -158,7 +158,7 @@ cdef extern from "<fst/fstlib.h>" namespace "fst":
     cdef void Invert(MutableFst* ifst)
     cdef void Minimize(MutableFst* fst)
     cdef void Project(MutableFst* fst, ProjectType type)
-    cdef void Relabel(MutableFst* fst, 
+    cdef void Relabel(MutableFst* fst,
             vector[pair[int, int]]& ipairs,
             vector[pair[int, int]]& opairs)
     cdef void RmEpsilon(MutableFst* fst)
@@ -177,7 +177,7 @@ cdef extern from "<fst/fstlib.h>" namespace "fst":
 
 {{#types}}
     ctypedef Fst* Const{{fst}}Ptr 'const fst::Fst<fst::{{arc}}>*'
-    cdef void Replace(vector[pair[int, Const{{fst}}Ptr]] label_fst_pairs, 
+    cdef void Replace(vector[pair[int, Const{{fst}}Ptr]] label_fst_pairs,
              MutableFst *ofst,
              int root,
              bint epsilon_on_replace)
@@ -185,7 +185,7 @@ cdef extern from "<fst/fstlib.h>" namespace "fst":
 
 cdef extern from "<fst/script/draw.h>" namespace "fst":
     cdef cppclass FstDrawer[A]:
-        FstDrawer(Fst& fst, 
+        FstDrawer(Fst& fst,
                   sym.SymbolTable *isyms,
                   sym.SymbolTable *osyms,
                   sym.SymbolTable *ssyms,
@@ -194,7 +194,7 @@ cdef extern from "<fst/script/draw.h>" namespace "fst":
                   float width,
                   float height,
                   bint portrait,
-                  bint vertical, 
+                  bint vertical,
                   float ranksep,
                   float nodesep,
                   int fontsize,

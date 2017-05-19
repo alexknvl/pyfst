@@ -99,7 +99,7 @@ cdef class SymbolTable:
         self.table.Write(as_str(filename))
 
     def write_text(self, filename):
-        """table.write_text(filename): 
+        """table.write_text(filename):
         save the symbol table to filename in text form"""
         self.table.WriteText(as_str(filename))
 
@@ -173,7 +173,7 @@ def _merge_tables(SymbolTable syms1, SymbolTable syms2, SymbolTable merged):
         except KeyError:
             pass
         merged[symbol] = value
-    
+
 
 cdef class _Fst:
     def __init__(self):
@@ -425,7 +425,7 @@ cdef class {{fst}}(_Fst):
     property start:
         def __get__(self):
             return self.fst.Start()
-        
+
         def __set__(self, int start):
             self.fst.SetStart(start)
 
@@ -589,7 +589,7 @@ cdef class {{fst}}(_Fst):
         switch input and output labels"""
         libfst.Invert(self.fst)
         self.isyms, self.osyms = self.osyms, self.isyms
-    
+
     def inverse(self):
         """fst.inverse() -> inverse of the transducer"""
         cdef {{fst}} result = self.copy()
@@ -816,7 +816,7 @@ cdef class {{fst}}(_Fst):
         """fst.draw(SymbolTable isyms=None, SymbolTable osyms=None, SymbolTable ssyms=None)
         -> dot format representation of the transducer"""
         cdef ostringstream out
-        cdef sym.SymbolTable* isyms_table = (isyms.table if isyms 
+        cdef sym.SymbolTable* isyms_table = (isyms.table if isyms
                                              else self.isyms.table if self.isyms
                                              else NULL)
         cdef sym.SymbolTable* osyms_table = (osyms.table if osyms

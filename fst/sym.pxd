@@ -3,7 +3,7 @@ from libcpp.string cimport string
 from libcpp cimport bool
 from util cimport istream
 
-cdef extern from "<fst/symbol-table.h>" namespace "fst":    
+cdef extern from "<fst/symbol-table.h>" namespace "fst":
     cdef cppclass SymbolTable:
         SymbolTable(SymbolTable &table)
         SymbolTable(string &name)

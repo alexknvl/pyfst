@@ -3,7 +3,7 @@ cimport libfst
 
 
 cdef class _Fst:
-    pass 
+    pass
 
 cdef class SymbolTable:
     cdef sym.SymbolTable* table
@@ -17,4 +17,3 @@ cdef class StdVectorFst(_Fst):
 cdef class LogVectorFst(_Fst):
     cdef libfst.LogVectorFst* fst
     cdef public SymbolTable isyms, osyms
-
