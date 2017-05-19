@@ -1,5 +1,7 @@
 # pyfst
 
+[![Join the chat at https://gitter.im/alexknvl/pyfst](https://badges.gitter.im/alexknvl/pyfst.svg)](https://gitter.im/alexknvl/pyfst?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Python interface to [OpenFst](http://openfst.org)
 
 Documentation: http://pyfst.github.io
